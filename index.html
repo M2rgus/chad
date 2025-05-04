@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Year Together</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff5f8;
+      color: #333;
+      line-height: 1.6;
+    }
+    #login-screen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #fff0f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+    #login-screen input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    #login-screen button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background: #ff8ab8;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: #ffdee9;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .timeline {
+      width: 90%;
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+    .month-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .month-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-family: 'Dancing Script', cursive;
+      margin-bottom: 1rem;
+    }
+    .cover-img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .media-grid img,
+    .media-grid video {
+      width: 100%;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: 'Dancing Script', cursive;
+      background: #fff0f6;
+      margin-top: 4rem;
+    }
+    @media (min-width: 700px) {
+      .media-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .hidden { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .fade-in { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div id="login-screen">
+    <h2>Enter Password</h2>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkPassword()">Unlock</button>
+  </div>
+
+  <div id="content" style="display: none;">
+    <header>
+      Our Year Together 💖
+    </header>
+
+    <main class="timeline">
+      <section class="month-section" id="january">
+        <h2 class="month-title">January</h2>
+        <img src="media/jan-cover.jpg" alt="January Cover" class="cover-img">
+        <div class="media-grid">
+          <img src="media/jan1.jpg" alt="Memory 1">
+          <video controls src="media/jan2.mp4"></video>
+        </div>
+      </section>
+
+      <section class="month-section" id="february">
+        <h2 class="month-title">February</h2>
+        <img src="media/feb-cover.jpg" alt="February Cover" class="cover-img">
+        <div class="media-grid">
+          <img src="media/feb1.jpg" alt="Memory 1">
+          <video controls src="media/feb2.mp4"></video>
+        </div>
+      </section>
+
+      <!-- Add more months here in the same format -->
+    </main>
+
+    <footer>
+      Thank you for an amazing year ❤️
+    </footer>
+  </div>
+
+  <script>
+    const PASSWORD = "123"; // change this to your actual password
+
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === PASSWORD) {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      } else {
+        alert("Incorrect password. Try again.");
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.month-section').forEach(section => {
+      section.classList.add('hidden');
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
