@@ -82,12 +82,12 @@
   }
   
   #yesBtn {
-    background-color: #ff8ab8;
+    background-color: #5bf0f0;
     color: white;
   }
   
   #noBtn {
-    background-color: #ccc;
+    background-color: #ff8ab8;
   }
   
   
@@ -646,35 +646,50 @@
 #content {
   position: fixed;
   inset: 0;
-  background: rgba(255, 214, 221, 0.7); /* match feed-scene pink */
+  background: rgba(255,214,221,0.7);
   backdrop-filter: blur(8px);
-  display: flex;              /* center the note container */
-  align-items: center;
-  justify-content: center;
   z-index: 2000;
 }
 
-/* container to constrain the textarea width */
+/* absolutely center the note container */
 #note-container {
-  width: clamp(300px, 80%, 800px); /* min 300px, max 800px */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 80vw, 600px);
 }
 
-/* static textarea for your note */
+
+/* the textarea itself */
 #note-area {
   width: 100%;
-  height: clamp(200px, 50vh, 500px); /* responsive height */
-  background: #fff;
-  color: #000;
-  font-size: 1rem;
-  line-height: 1.5;
+  /* allow it to grow up to 80% of the viewport height */
+  max-height: 80vh;
+  /* remove min-height so it can shrink on small screens */
+  background: white;
+  /* …the rest of your styles… */  
+  color: black;
   border: none;
   border-radius: 12px;
   padding: 1rem;
-  resize: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;  
 }
 
 /* remove default focus outline */
 #note-area:focus {
   outline: none;
+}
+
+#note-image {
+  width: 100%;      /* fill the note-area width */
+  height: auto;     /* keep aspect ratio */
+  border-radius: 8px; /* optional rounded corners */
+  object-fit: cover;  /* crop/fit if needed */
 }

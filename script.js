@@ -2,12 +2,12 @@ const PASSWORD = "123";
 let noClicks = 0;
 
 const messages = [
-  "Do you like cheese?",
-  "Are you sure?",
-  "Are you really sure?",
-  "You might regret this...",
-  "Come on now...",
-  "No more 'No' for you!"
+  "Kumb on naljakam?",
+  "Oled sa ikka kindel?",
+  "Oled sa ikka väga kindel?",
+  "Sul ei pruugi õigus olla...",
+  "Ole nüüd aus...",
+  "Säh, vali nüüd!"
 ];
 
 function checkPassword() {
@@ -330,8 +330,10 @@ function feedCoco() {
         // 3) All noms done → show “Thank you!”
         positionAbove(coco2, thankEl, 8);
         thankEl.style.display = "block";
+        bowl.src = "media/bowl.png";     // ← put this line here
 
-        // 4) After a brief pause, hide it & run Coco2 off-screen
+
+        // 4) After a brief pause, hide it, reset bowl, and run Coco2 off-screen
         setTimeout(() => {
           thankEl.style.display = "none";
           wrapper.classList.add("run-off");
@@ -371,7 +373,7 @@ function finishFeeding() {
   // 3) When the slide transition ends, swap to main content
   wrapper.addEventListener("transitionend", () => {
     feed.style.display    = "none";
-    content.style.display = "block";
+    showNoteScene();
   }, { once: true });
 }
 
@@ -400,6 +402,20 @@ function runCocoAway() {
 
   setTimeout(showFeedScene, 2000);
 }
+
+function showNoteScene() {
+  const scene    = document.getElementById("content");
+  const cocoCont = document.getElementById("coco4-container");
+
+  // reveal the note scene
+  scene.style.display = "block";
+
+  // on the next frame, slide Coco in
+  requestAnimationFrame(() => {
+    cocoCont.classList.add("entered");
+  });
+}
+
 
 
 

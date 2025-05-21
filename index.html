@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Year Together</title>
+  <title>Meie aastapäev</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="login-screen">
-    <h2>Enter Password</h2>
-    <input type="password" id="password" placeholder="Password" />
-    <div id="error-message">Incorrect password. Try again.</div>
-    <button onclick="checkPassword()">Unlock</button>
+    <h2>Sisesta parool</h2>
+    <input type="password" id="password" placeholder="Parool" />
+    <div id="error-message">Vale parool, proovi uuesti</div>
+    <button onclick="checkPassword()">Sisene</button>
   </div>
 
   <div id="question-screen">
-    <h1>Do you like cheese?</h1>
-    <button id="yesBtn" onclick="startLightScene()">Yes</button>
-    <button id="noBtn" onclick="expandYes()">No</button>
+    <h1>Kes on kõige naljakam</h1>
+    <button id="yesBtn" onclick="startLightScene()">Karl</button>
+    <button id="noBtn" onclick="expandYes()">Greta</button>
   </div>
 
   <div id="light-scene">
     <div class="light-box">
-      <h2 id="light-title">Hah, I knew it.</h2>
-      <p id="light-instruction">It’s quite dark here. Turn on the light</p>
+      <h2 id="light-title">Hah, Teadsin!!!</h2>
+      <p id="light-instruction">Siin on päris pime nüüd, pane tuli põlema</p>
   
       <svg class="arrow" id="bulb-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="-30.28 -30.28 363.38 363.38" width="80" height="80" fill="#ffffff" stroke="#ffffff">
         <g>
@@ -33,7 +33,7 @@
       </svg>
   
       <div id="heart-container">
-        <p id="press-heart-text">Now press the heart</p>
+        <p id="press-heart-text">Nüüd vajuta südame peale</p>
         <div id="heart" onclick="showMainContent()">❤️</div>
       </div>
   
@@ -50,7 +50,7 @@
   
   <div id="tree-scene">
     <div id="time-wrapper">
-      <div id="time-title">Time We've Been Together</div>
+      <div id="time-title">Kui kaua oleme koos olnud..</div>
       <div id="elapsed-time"></div>
     </div>
   
@@ -67,7 +67,7 @@
   
     <!-- Coco -->
     <div id="coco-container">
-      <p id="coco-instruction">Click Coco</p>
+      <p id="coco-instruction">Vajuta Coco peale</p>
       <img id="coco" src="media/coco.png" alt="Coco the bunny" />
     </div>    
 </div>
@@ -82,17 +82,21 @@
     <img id="food-pack"  src="media/food.png"       alt="Food pack" />
   </div>
 
-  <div id="feed-text">Feed Coco</div>
-  <div id="thank-you" style="display:none;">Thank you!</div>
+  <div id="feed-text">Coco tahab süüa</div>
+  <div id="thank-you" style="display:none;">Aitäh sulle!</div>
 </div>
 
 
 
 
 <!-- NOTE SCENE -->
-<div id="content" style="display: none;">
+<div id="content" style="display:none;">
   <div id="note-container">
-    <textarea id="note-area" placeholder="Write your note here…"></textarea>
+    <div id="note-area">
+      <p>Kallis, ma armastan sind nii palju, olen nii õnnelik, et just sinuga koos olen ning meil on esimene aastapäev, winwinwin. Ootan sind tagasi Eestisse enda kaissu, igatsen su kallistusi ja musisi. Varsti näeme kisskiss ❤️❤️</p>
+      <p>Sinu Karl</p>
+      <img id="note-image" src="media/cute.jpg" alt="Cute illustration" />
+    </div>
   </div>
 </div>
 
