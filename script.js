@@ -1,4 +1,4 @@
-const PASSWORD = "123";
+const PASSWORD = "cocobatman123";
 let noClicks = 0;
 
 const messages = [
