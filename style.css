@@ -90,9 +90,6 @@
     background-color: #ccc;
   }
   
-  #content {
-    display: none;
-  }
   
   header {
     text-align: center;
@@ -527,19 +524,17 @@
   }
   
 
+/* Shared full-screen scenes */
 #coco-scene,
 #feed-scene {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff5f8;
+  inset: 0;
+  background: #ffd6dd;
   z-index: 1000;
-  text-align: center;
   overflow: hidden;
+  text-align: center;
 }
-  
 
 /* Bunny scene */
 #coco-container {
@@ -553,112 +548,133 @@
   z-index: 3;
 }
 
+/* Bunny image hover */
 #coco {
-  width: 120px;
+  width: 150px;
   height: auto;
   transition: transform 0.3s ease;
 }
-
 #coco:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
 
+/* “Click Coco” text */
 #coco-instruction {
   font-size: 1rem;
+  font-weight: 700;
   color: #222;
   opacity: 0;
   transition: opacity 0.5s ease;
-  margin-bottom: 0.2rem;
+  margin-bottom: -5rem;
 }
 
+/* ————— FEED SCENE ————— */
 
-/* Feed scene */
-#coco2-container {
+/* ————— FEED SCENE ————— */
+
+/* a single centered flex row at bottom for bowl, pack, and Coco2 */
+#food-wrapper {
+  --gap: clamp(8px, 2vw, 16px);
   position: absolute;
-  bottom: 0;
-  left: -150px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  transition: left 2s ease;
-  z-index: 3;
-}
-
-
-#coco2 {
-  width: 120px;
-  height: auto;
-  transition: transform 0.3s ease;
-}
-
-#coco2:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-
-#food-setup {
-  position: absolute;
-  right: 20%;
-  bottom: 15%;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-#food-pack {
-  width: 60px;
-  cursor: pointer;
-}
-#food-bowl {
-  width: 60px;
-  height: 30px;
-  background: #ccc;
-  border-radius: 50%;
-  position: relative;
-}
-#food-bowl.filled {
-  background: #ffcc99;
-}
-#feed-text, #thank-you {
-  position: absolute;
-  top: 10%;
-  width: 100%;
-  font-size: 1.5rem;
-  display: none;
-}
-.nom {
-  position: absolute;
-  font-size: 1rem;
-  color: #444;
-  animation: nomFade 0.5s ease-in-out forwards;
-}
-@keyframes nomFade {
-  0% { opacity: 0; transform: translateY(-10px); }
-  50% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-30px); }
-}
-
-/* Rope */
-#rope-area {
-  display: none;
-  position: absolute;
-  top: -100px;
+  bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
-  text-align: center;
-}
-#rope {
-  font-size: 2rem;
-  cursor: pointer;
-  animation: ropeDrop 1s forwards;
-}
-#rope-text {
-  font-size: 1.2rem;
-  color: #444;
-  margin-top: 0.5rem;
-}
-@keyframes ropeDrop {
-  to { top: 50px; }
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap);
+  pointer-events: auto;
+  z-index: 2;
 }
 
+/* dynamic image sizing */
+#coco2,
+#food-bowl,
+#food-pack {
+  width: clamp(80px, 10vw, 160px);
+  height: auto;
+}
+
+/* Coco2’s container slides in from the left of the bowl */
+#coco2-container {
+  transform: translateX(calc(-500% - var(--gap)));
+  transition: transform 2s ease, transform 2s ease-in-out;
+}
+/* when JS adds .entered, it stops beside the bowl */
+#coco2-container.entered {
+  transform: translateX(0);
+}
+
+/* — new run-off state — */
+#coco2-container.run-off {
+  transition: transform 2s ease-in-out;
+  transform: translateX(2500%); /* slide far off to the right */
+}
+
+/* static bowl stays centered by flex */
+#food-bowl { }
+
+/* pack sits just to the right and receives clicks */
+#food-pack {
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+#food-pack:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Feed / Thank-you labels (positioned in JS) */
+#feed-text,
+#thank-you {
+  position: absolute;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: #222;
+  font-weight: bold;
+}
+
+/* “Thank you” hidden by default—shown in JS */
+#thank-you {
+  display: none;
+}
+
+/* full-screen pink blurred backdrop */
+#content {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 214, 221, 0.7); /* match feed-scene pink */
+  backdrop-filter: blur(8px);
+  display: flex;              /* center the note container */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* container to constrain the textarea width */
+#note-container {
+  width: clamp(300px, 80%, 800px); /* min 300px, max 800px */
+}
+
+/* static textarea for your note */
+#note-area {
+  width: 100%;
+  height: clamp(200px, 50vh, 500px); /* responsive height */
+  background: #fff;
+  color: #000;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  resize: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* remove default focus outline */
+#note-area:focus {
+  outline: none;
+}

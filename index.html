@@ -73,49 +73,30 @@
 </div>
   
 <!-- FEEDING SCENE -->
-<div id="feed-scene" style="display: none;">
-  <div id="coco2-container">
-    <img id="coco2" src="media/coco.png" alt="Coco at bowl" />
-  </div>
-
-  <div id="food-setup">
-    <img id="food-pack" src="media/food.png" alt="Food pack" />
-    <div id="food-bowl" class="empty"></div>
+<div id="feed-scene" style="display:none;">
+  <div id="food-wrapper">
+    <div id="coco2-container">
+      <img id="coco2" src="media/coco.png" alt="Coco at bowl" />
+    </div>
+    <img id="food-bowl"  src="media/bowl.png"       alt="Empty bowl" />
+    <img id="food-pack"  src="media/food.png"       alt="Food pack" />
   </div>
 
   <div id="feed-text">Feed Coco</div>
-  <div id="thank-you" style="display: none;">Thank you!</div>
-  <div id="rope-area" style="display: none;">
-    <div id="rope">🪢</div>
-    <div id="rope-text">Click the rope</div>
+  <div id="thank-you" style="display:none;">Thank you!</div>
+</div>
+
+
+
+
+<!-- NOTE SCENE -->
+<div id="content" style="display: none;">
+  <div id="note-container">
+    <textarea id="note-area" placeholder="Write your note here…"></textarea>
   </div>
 </div>
 
-  <div id="content">
-    <header>Our Year Together 💖</header>
 
-    <main class="timeline">
-      <section class="month-section" id="january">
-        <h2 class="month-title">January</h2>
-        <img src="media/jan-cover.jpg" alt="January Cover" class="cover-img" />
-        <div class="media-grid">
-          <img src="media/jan1.jpg" alt="Memory 1" />
-          <video controls src="media/jan2.mp4"></video>
-        </div>
-      </section>
-
-      <section class="month-section" id="february">
-        <h2 class="month-title">February</h2>
-        <img src="media/feb-cover.jpg" alt="February Cover" class="cover-img" />
-        <div class="media-grid">
-          <img src="media/feb1.jpg" alt="Memory 1" />
-          <video controls src="media/feb2.mp4"></video>
-        </div>
-      </section>
-    </main>
-
-    <footer>Thank you for an amazing year ❤️</footer>
-  </div>
 
   <script src="script.js"></script>
 </body>
